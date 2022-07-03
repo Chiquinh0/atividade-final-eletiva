@@ -1,0 +1,55 @@
+DNS SERVER
+
+ É o serviço responsável por traduzir nomes
+em endereços IP e (vice-versa);
+ No Linux é o Serviço Bind9;
+ Trabalha na arquitetura Cliente/Servidor;
+ O named responde às “perguntas” dos
+clientes;
+ A configuração é feita no arquivo
+/etc/resolv.conf
+
+nano
+
+/etc/bind/named.conf.default-zones
+
+zone "127.in-addr.apa" {
+        type master; 
+            file "/etc/bind/db.127";
+}; 
+zone "0.in-addr.arpa" {
+        type master;
+          file "/ec/bind/db.0";
+};
+zone "255.in-addr.arpa " {
+        type master;
+          file"/etc/bind/db.255";
+};
+zone "etlepap.com" {
+         type master;
+           file "/etc/bind/db.eteplap.com;
+};
+
+Configurando SOA
+
+#nano /etc/bind/db.eteplap.com
+
+; BIND data for local loopback interface
+;
+$TTL 604800
+@    IN      SOA      eteplap.com.  root.eteplap.com. (
+                            2          ; Serial
+                       604800          ; Refresh
+                        86400          ; Retry
+                      2419200          ; Espire
+                       604800  )        ; Negative Cache TTL
+;
+          IN      NS       servidor.eteplap.com.
+servidor  IN      A        172.16.1.1
+firewall  IN      A        172.16.1.1  
+www       IN      A        172.16.1.1
+firewall2 IN      A        172.16.1.1
+firewall3 IN      A        172.16.1.1
+                                   
+                                   
+                            
